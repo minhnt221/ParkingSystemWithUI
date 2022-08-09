@@ -16,7 +16,7 @@ public class Parking {
     private Slots [][]slots = new Slots[max_row][max_column];
     private int used_slot = 0;
     private int capacity = max_row*max_column;
-    private ArrayList<Vehicle> currentVehicleInParkingLot = new ArrayList();
+    public ArrayList<Vehicle> currentVehicleInParkingLot = new ArrayList();
     
     public Parking(){
         //tao slot khi parking duoc tao
@@ -26,6 +26,17 @@ public class Parking {
             }
 	}
     }
+    public void loadUsedSlot(){
+        currentVehicleInParkingLot.clear();
+        for(int i = 0; i < max_row; i++){
+            for(int j = 0; j < max_column; j++){
+                if(slots[i][j].isAvai() == false){
+                    currentVehicleInParkingLot.add(slots[i][j].getVehicle());
+                }
+            }
+        }            
+    }
+    
     public void setMaxRow(int r){
         max_row = r;
     }

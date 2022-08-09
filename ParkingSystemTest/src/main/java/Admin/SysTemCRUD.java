@@ -42,6 +42,11 @@ public class SysTemCRUD extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setAlignmentX(500);
+        jPanel1.setAlignmentY(500);
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.setLocation(500, 500);
+
         jButton1.setText("Create CarOrder");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +91,8 @@ public class SysTemCRUD extends javax.swing.JFrame {
         });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setAlignmentX(10.0F);
+        jPanel4.setAlignmentY(10.0F);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("System");
@@ -188,6 +195,8 @@ public class SysTemCRUD extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new SysTemCRUD().setVisible(true);
+             
+
             }
         });
     }

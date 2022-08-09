@@ -72,7 +72,7 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(862, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,9 +88,8 @@ public class Admin extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.darkGray, null));
 
         btnSystem.setBackground(new java.awt.Color(153, 204, 255));
-        btnSystem.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\CourseProject\\src\\main\\java\\system.png")); // NOI18N
+        btnSystem.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\ParkingSystemWithUI-main\\ParkingSystemWithUI-main\\ParkingSystemTest\\src\\main\\java\\Admin\\system.png")); // NOI18N
         btnSystem.setText("System"); // NOI18N
-        btnSystem.setActionCommand("System");
         btnSystem.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnSystem.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnSystem.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +99,7 @@ public class Admin extends javax.swing.JFrame {
         });
 
         btnCarInOut.setBackground(new java.awt.Color(255, 153, 153));
-        btnCarInOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\CourseProject\\src\\main\\java\\car.png")); // NOI18N
+        btnCarInOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\ParkingSystemWithUI-main\\ParkingSystemWithUI-main\\ParkingSystemTest\\src\\main\\java\\Admin\\car.png")); // NOI18N
         btnCarInOut.setText("Car In And Out");
         btnCarInOut.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCarInOut.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -111,7 +110,7 @@ public class Admin extends javax.swing.JFrame {
         });
 
         btnStatistic.setBackground(new java.awt.Color(78, 169, 116));
-        btnStatistic.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\CourseProject\\src\\main\\java\\statistic.png")); // NOI18N
+        btnStatistic.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\ParkingSystemWithUI-main\\ParkingSystemWithUI-main\\ParkingSystemTest\\src\\main\\java\\Admin\\statistic.png")); // NOI18N
         btnStatistic.setText("Statistic");
         btnStatistic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,15 +119,24 @@ public class Admin extends javax.swing.JFrame {
         });
 
         btnAccounts.setBackground(new java.awt.Color(78, 134, 196));
-        btnAccounts.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\CourseProject\\src\\main\\java\\account.png")); // NOI18N
+        btnAccounts.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\ParkingSystemWithUI-main\\ParkingSystemWithUI-main\\ParkingSystemTest\\src\\main\\java\\Admin\\account.png")); // NOI18N
         btnAccounts.setText("Accounts");
+        btnAccounts.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAccounts.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnAccounts.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAccountsActionPerformed(evt);
+            }
+        });
 
         btnGarage.setBackground(new java.awt.Color(153, 255, 153));
-        btnGarage.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\CourseProject\\src\\main\\java\\Parkinggarage.png")); // NOI18N
+        btnGarage.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\ParkingSystemWithUI-main\\ParkingSystemWithUI-main\\ParkingSystemTest\\src\\main\\java\\Admin\\Parkinggarage.png")); // NOI18N
         btnGarage.setText("Garage");
+        btnGarage.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGarage.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         btnLogOut.setBackground(new java.awt.Color(51, 51, 51));
-        btnLogOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\CourseProject\\src\\main\\java\\152533.png")); // NOI18N
+        btnLogOut.setIcon(new javax.swing.ImageIcon("C:\\Users\\dqkhanh\\Documents\\NetBeansProjects\\ParkingSystemWithUI-main\\ParkingSystemWithUI-main\\ParkingSystemTest\\src\\main\\java\\Admin\\152533.png")); // NOI18N
         btnLogOut.setText("Log Out");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,19 +149,19 @@ public class Admin extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAccounts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(70, 70, 70)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(79, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSystem, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                    .addComponent(btnAccounts, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCarInOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnStatistic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(66, 66, 66)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnGarage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(80, 80, 80))
+                    .addComponent(btnStatistic, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnGarage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,9 +187,9 @@ public class Admin extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(112, 112, 112))
+                .addContainerGap(66, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,16 +197,17 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(38, 38, 38))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStatisticActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatisticActionPerformed
-new Statistic().setVisible(true);        // TODO add your handling code here:
+        new Statistic().setVisible(true);  
+        this.setVisible(false);// TODO add your handling code here:
     }//GEN-LAST:event_btnStatisticActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
@@ -214,9 +223,15 @@ new Statistic().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_btnSystemActionPerformed
 
     private void btnCarInOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCarInOutActionPerformed
-        new CarInAndOut(p,car,getParkingStatus).setVisible(true);
+        new CarInAndOut(p).setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnCarInOutActionPerformed
+
+    private void btnAccountsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccountsActionPerformed
+       new Account().setVisible(true);
+       this.setVisible(false);
+              // TODO add your handling code here:
+    }//GEN-LAST:event_btnAccountsActionPerformed
 
     /**
      * @param args the command line arguments

@@ -5,6 +5,8 @@
 package Admin;
 
 import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.Queue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,17 +17,16 @@ import java.util.logging.Logger;
 public class CarInAndOut extends javax.swing.JFrame {
     
     public static Parking p = null;
-    public static Vehicle []car = null;
-    public static int []getParkingStatus = null;
+    public static Queue<Vehicle> inQ = new ArrayDeque<>();
+    public static Queue<Vehicle> outQ = new ArrayDeque<>();
+    
     /**
      * Creates new form CarInAndOut
      * @param p
      */
-    public CarInAndOut(Parking p, Vehicle []car, int []getParkingStatus) {
-        if (this.p==null&&this.car==null&&this.getParkingStatus==null){
+    public CarInAndOut(Parking p) {
+        if (this.p==null){
             this.p = p;
-            this.car = car;
-            this.getParkingStatus = getParkingStatus;
         }
         
         initComponents();
@@ -69,9 +70,17 @@ public class CarInAndOut extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         btnDemoCarInx1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        txtQueueSize = new javax.swing.JTextField();
+        txtCurrentInQ = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         btnDemoCarOutX1 = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txtQueueSize1 = new javax.swing.JTextField();
+        txtCurrentOutQ = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -119,7 +128,7 @@ public class CarInAndOut extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -190,7 +199,7 @@ public class CarInAndOut extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtCardIdOut))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -205,7 +214,7 @@ public class CarInAndOut extends javax.swing.JFrame {
                     .addComponent(txtPrice)
                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnGoOut, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(btnGoOut, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
@@ -268,7 +277,7 @@ public class CarInAndOut extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
                     .addComponent(txtLicensePlatesIn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,10 +287,10 @@ public class CarInAndOut extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(2, 2, 2)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE))
                     .addComponent(txtTimeIn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(95, 95, 95)
-                .addComponent(btnGoIn, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
+                .addComponent(btnGoIn, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -302,15 +311,42 @@ public class CarInAndOut extends javax.swing.JFrame {
             }
         });
 
+        jLabel12.setText("Queue In Size");
+
+        txtQueueSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQueueSizeActionPerformed(evt);
+            }
+        });
+
+        txtCurrentInQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCurrentInQActionPerformed(evt);
+            }
+        });
+
+        jLabel14.setText("Current car in Queue");
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(btnDemoCarInx1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDemoCarInx1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel14))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCurrentInQ, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtQueueSize, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -318,9 +354,17 @@ public class CarInAndOut extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel11)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDemoCarInx1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtQueueSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCurrentInQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -334,15 +378,42 @@ public class CarInAndOut extends javax.swing.JFrame {
             }
         });
 
+        jLabel15.setText("Queue Out Size");
+
+        jLabel16.setText("Current car in Queue");
+
+        txtQueueSize1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQueueSize1ActionPerformed(evt);
+            }
+        });
+
+        txtCurrentOutQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCurrentOutQActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnDemoCarOutX1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel15))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtQueueSize1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCurrentOutQ, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(90, 90, 90)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDemoCarOutX1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel13))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -350,9 +421,17 @@ public class CarInAndOut extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDemoCarOutX1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(txtQueueSize1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(txtCurrentOutQ, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jButton1.setText("back");
@@ -407,8 +486,8 @@ public class CarInAndOut extends javax.swing.JFrame {
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -434,10 +513,11 @@ public class CarInAndOut extends javax.swing.JFrame {
     private void btnDemoCarInx1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDemoCarInx1ActionPerformed
         // TODO add your handling code here:
         try {
-            car[Vehicle.count] = new Vehicle();
-            txtLicensePlatesIn.setText(car[Vehicle.count - 1].getLicPlate());
-            txtCardIdIn.setText(String.valueOf(Ticket.getCount()));
-            System.out.println("car " + car[Vehicle.count - 1].getLicPlate() + " want to park");            
+            Vehicle carIn = new Vehicle();
+            inQ.add(carIn);
+            txtQueueSize.setText(String.valueOf(inQ.size()));
+            txtCurrentInQ.setText(inQ.peek().getLicPlate());
+            System.out.println("car " + carIn.getLicPlate() + " want to park");            
         } catch (Exception e) {
         }
     
@@ -457,13 +537,34 @@ public class CarInAndOut extends javax.swing.JFrame {
         // TODO add your handling code here:// 
         try {
             
-            //parking kiem slot cho vehicle, in ve
-            p.assignVehicleToSlot(car[Vehicle.count - 1]);
-
-            //them vehicle vao array current 
-            p.addVehicleToCurrentVehicle(car[Vehicle.count - 1]);
-            txtCardIdIn.setText("");
-            txtLicensePlatesIn.setText("");
+            if(inQ.isEmpty()){
+                System.out.println("The In Queue is empty");
+                txtCardIdIn.setText("");
+                txtLicensePlatesIn.setText("");
+                txtQueueSize.setText(String.valueOf(inQ.size()));
+                txtCurrentInQ.setText("");
+            }
+            else{
+                Vehicle firstVinQ = inQ.poll();
+                p.assignVehicleToSlot(firstVinQ);
+                txtCardIdIn.setText(String.valueOf(firstVinQ.getTicket().getID()));
+                txtLicensePlatesIn.setText(firstVinQ.getLicPlate());
+                txtQueueSize.setText(String.valueOf(inQ.size()));
+                
+                if(inQ.isEmpty()){
+                    txtCurrentInQ.setText("");
+                }   
+                else
+                    txtCurrentInQ.setText(inQ.peek().getLicPlate());
+//                //parking kiem slot cho vehicle, in ve
+//                p.assignVehicleToSlot(car[Vehicle.count - 1]);
+//
+//                //them vehicle vao array current 
+//                p.addVehicleToCurrentVehicle(car[Vehicle.count - 1]);
+//                txtCardIdIn.setText("");
+//                txtLicensePlatesIn.setText("");
+            }
+            
         } catch (Exception e) {
         }
     }//GEN-LAST:event_btnGoInActionPerformed
@@ -472,66 +573,133 @@ public class CarInAndOut extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         try {
-            if (txtCardIdOut.getText()!="" && txtCardIdOut.getText().matches("[0-9]+") ){
-                int ID = Integer.parseInt(txtCardIdOut.getText());
+//            if (txtCardIdOut.getText()!="" && txtCardIdOut.getText().matches("[0-9]+") ){
+//                int ID = Integer.parseInt(txtCardIdOut.getText());
+//                outerloop:
+//                for (int i = 1; i<p.getMaxRow()+1;i++){
+//                    for(int j = 1; j<p.getMaxColumn()+1;j++){
+//
+//                        if(p.getSlot(i, j).isAvai() == true){
+//                            if(i == p.getMaxRow() && j == p.getMaxColumn())
+//                                System.out.println("No Car with such ID");
+//                                txtCardIdOut.setText("");
+//                        } 
+//
+//                        else if (p.getSlot(i, j).getVehicle().getTicket().getID() == ID){
+//                            System.out.println("Car "+ p.getSlot(i, j).getVehicle().getLicPlate() +
+//                                    " want to leave the parking lot.");
+//                            txtLicensePlateOut.setText(p.getSlot(i, j).getVehicle().getLicPlate());
+//                            break outerloop;
+//                        }
+//
+//                    }
+//                }
+//            }
+//            else{
+//                 System.out.println("Ticket ID must be a number.");
+//                txtCardIdOut.setText("");
+//            }
+            //Initialized
+            p.loadUsedSlot();
+            if(p.currentVehicleInParkingLot.isEmpty()){
+                System.out.println("No car in the parking lot.");
+                txtQueueSize1.setText(String.valueOf(outQ.size()));
+                if(outQ.isEmpty()){
+                    txtCurrentOutQ.setText("");
+                }
+            } 
+            else{
+                int random = (int)(Math.random()* p.currentVehicleInParkingLot.size() + 1);
+                Vehicle out = p.currentVehicleInParkingLot.get(random);
                 outerloop:
-                for (int i = 1; i<p.getMaxRow()+1;i++){
-                    for(int j = 1; j<p.getMaxColumn()+1;j++){
-
-                        if(p.getSlot(i, j).isAvai() == true){
-                            if(i == p.getMaxRow() && j == p.getMaxColumn())
-                                System.out.println("No Car with such ID");
-                                txtCardIdOut.setText("");
-                        } 
-
-                        else if (p.getSlot(i, j).getVehicle().getTicket().getID() == ID){
-                            System.out.println("Car "+ p.getSlot(i, j).getVehicle().getLicPlate() +
-                                    " want to leave the parking lot.");
-                            txtLicensePlateOut.setText(p.getSlot(i, j).getVehicle().getLicPlate());
+                for (int i = 1; i < p.getMaxRow() + 1; i++) {
+                    for (int j = 1; j < p.getMaxColumn() + 1; j++) {
+    //                    
+    //                    if (p.getSlot(i, j).isAvai() == true) {
+    //                        if (i == p.getMaxRow() && j == p.getMaxColumn()) {
+    //                            System.out.println("No Car with such ID");
+    //                        }
+                        if (p.getSlot(i, j).getVehicle().getTicket().getID() == out.getTicket().getID()) {
+                            p.freeSlot(p.getSlot(i, j));
                             break outerloop;
                         }
-
                     }
                 }
+                
+                outQ.add(out);
+                txtQueueSize1.setText(String.valueOf(outQ.size()));
+                txtCurrentOutQ.setText(outQ.peek().getLicPlate());
             }
-            else{
-                 System.out.println("Ticket ID must be a number.");
-                txtCardIdOut.setText("");
-            }
+                      
+              
                
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
         }
-        
+        finally{
+            p.loadUsedSlot();  
+        }
         
     }//GEN-LAST:event_btnDemoCarOutX1ActionPerformed
 
     private void btnGoOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoOutActionPerformed
         // TODO add your handling code here:
         try {
-            int ID = Integer.parseInt(txtCardIdOut.getText());
-            outerloop:
-            for (int i = 1; i < p.getMaxRow() + 1; i++) {
-                for (int j = 1; j < p.getMaxColumn() + 1; j++) {
-                    
-                    if (p.getSlot(i, j).isAvai() == true) {
-                        if (i == p.getMaxRow() && j == p.getMaxColumn()) {
-                            System.out.println("No Car with such ID");
+            p.loadUsedSlot();
+            if (outQ.isEmpty()){
+                System.out.println("The leaving queue is empty");
+            }
+            else{
+                Vehicle outAllow = outQ.poll();
+//            int ID = Integer.parseInt(txtCardIdOut.getText());
+                outerloop:
+                for (int i = 1; i < p.getMaxRow() + 1; i++) {
+                    for (int j = 1; j < p.getMaxColumn() + 1; j++) {
+    //                    
+    //                    if (p.getSlot(i, j).isAvai() == true) {
+    //                        if (i == p.getMaxRow() && j == p.getMaxColumn()) {
+    //                            System.out.println("No Car with such ID");
+    //                        }
+                        if (p.getSlot(i, j).getVehicle().getTicket().getID() == outAllow.getTicket().getID()) {
+                            
+                            txtCardIdOut.setText(String.valueOf(outAllow.getTicket().getID()));
+                            txtLicensePlateOut.setText(outAllow.getLicPlate());
+                            txtQueueSize1.setText(String.valueOf(outQ.size()));
+                            if(outQ.isEmpty()){
+                                txtCurrentOutQ.setText("");
+                            }
+                            else
+                                txtCurrentOutQ.setText(outQ.peek().getLicPlate());
+                            break outerloop;
                         }
-                    } else if (p.getSlot(i, j).getVehicle().getTicket().getID() == ID) {
-                        p.freeSlot(p.getSlot(i, j));
-                        p.removeVehicleByID(ID);
-                        break outerloop;
                     }
-                    
                 }
             }
-            
-        } catch (NumberFormatException numberFormatException) {
-        } finally {
+            p.loadUsedSlot();
+        } 
+        catch (Exception e) {
+        } 
+        finally {
             txtCardIdOut.setText("");
             txtLicensePlateOut.setText("");
         }
     }//GEN-LAST:event_btnGoOutActionPerformed
+
+    private void txtCurrentInQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCurrentInQActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCurrentInQActionPerformed
+
+    private void txtQueueSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQueueSizeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQueueSizeActionPerformed
+
+    private void txtQueueSize1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQueueSize1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQueueSize1ActionPerformed
+
+    private void txtCurrentOutQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCurrentOutQActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCurrentOutQActionPerformed
 
     /**
      * @param args the command line arguments
@@ -563,7 +731,7 @@ public class CarInAndOut extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CarInAndOut(p, car, getParkingStatus).setVisible(true);
+                new CarInAndOut(p).setVisible(true);
             }
         });
     }
@@ -579,7 +747,11 @@ public class CarInAndOut extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -596,9 +768,13 @@ public class CarInAndOut extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JTextField txtCardIdIn;
     private javax.swing.JTextField txtCardIdOut;
+    private javax.swing.JTextField txtCurrentInQ;
+    private javax.swing.JTextField txtCurrentOutQ;
     private javax.swing.JTextField txtLicensePlateOut;
     private javax.swing.JTextField txtLicensePlatesIn;
     private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtQueueSize;
+    private javax.swing.JTextField txtQueueSize1;
     private javax.swing.JTextField txtTimeIn1;
     private javax.swing.JTextField txtTimeIn2;
     private javax.swing.JTextField txtTimeOut;
